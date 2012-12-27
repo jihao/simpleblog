@@ -1,0 +1,15 @@
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
+    "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+
+	<allow>
+		<!-- 1 -->
+		<create creator="new" javascript="CommentsAction">
+			<param name="class" value="cn.heapstack.servlet.dwr.CommentsAction" />
+		</create>
+		<convert match="cn.heapstack.simpleblog.domain.Comments" converter="bean"></convert>		
+	</allow>
+	
+</dwr>

@@ -1,0 +1,66 @@
+FCKeditor_java
+
+	http://java.fckeditor.net/
+	http://docs.fckeditor.net/FCKeditor_2.x/Developers_Guide/Configuration
+	http://docs.fckeditor.net/FCKeditor_2.x/Developers_Guide/Configuration/Configuration_Options
+
+http://www.blogjava.net/fastunit/archive/2008/02/18/180525.html
+	
+	
+	
+TODO:
+
+	change tag edit to AJAX just in time edit
+	change tag delete to AJAX request
+	
+	make AJAX style category list(different font-color & font-size)
+	
+9.26 notes:
+	想做个AJAX,JavaScript(with raw XmlHttpRequest),JSON  的tag cloud,server端使用Servlet
+	DONE
+	
+10.15
+	做了个Servlet+JSP分页的原型
+		
+10.16
+	发现FCKEditor使用了slf4j,好奇了一下，决定试试看这个玩意(Is it a replace for log4j?)
+	The result is : slf4j and log4j can work together
+
+11.1
+	window.history.back() 返回上一页
+	
+	
+11.3
+	TODO:
+		主页的显示(DONE)
+		comments 校验
+		
+11.17
+	DONE:Search by category
+	TODO:
+		AJAX Tag Promote
+		Search By Tag(DONE - 11.24)
+		
+12.9
+	DataSource added
+	TODO:
+		using database mode than demo mode
+		Common style info/warn/error message for GUI
+		
+12.17
+	主键使用UUID替代原来的auto_increase策略
+	
+12.23
+	使用客户端验证的方法思路小结
+	使用JQuery Validation插件，采用编程方式验证表单，Form提交action随便哪个位置
+	使用DWR提交数据，使用AJAX方式加载数据
+	
+	统一风格样式的信息，警告，错误，消息设计
+	
+	
+12.27
+	静态链接生成
+	Category
+	Articles-41 Comments-20 advertisements-0 
+	
+	

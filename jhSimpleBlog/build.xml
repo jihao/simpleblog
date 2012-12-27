@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." name="FCKeditor" default="clean-fckeditor">
+
+	<target name="clean-fckeditor" description="Creates a clean FCKeditor distribution">
+		<!-- Adapt these properties to your needs -->
+		<property name="fckeditor-tmp" location="fckeditor-tmp" />
+		<property name="fckeditor-basename" value="FCKeditor_2.6.3.zip" />
+		<property name="fckeditor-destfile" value="${fckeditor-basename}_clean.zip" />
+
+		<delete file="${fckeditor-destfile}" />
+		<unzip overwrite="false" dest="${fckeditor-tmp}" src="${fckeditor-basename}" />
+		<zip destfile="${fckeditor-destfile}">
+			<zipfileset dir="${fckeditor-tmp}/fckeditor" prefix="fckeditor">
+				<include name="_samples/_plugins/" />
+				<include name="editor/" />
+				<include name="fckconfig.js" />
+				<include name="*.xml" />
+				<exclude name="editor/filemanager/connectors/" />
+			</zipfileset>
+		</zip>
+		
+		<delete dir="${fckeditor-tmp}" />
+		
+	</target>
+
+</project>

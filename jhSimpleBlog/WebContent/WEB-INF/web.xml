@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>SimpleBlog</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>Home</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>Connector</servlet-name>
+    <servlet-class> net.fckeditor.connector.ConnectorServlet 
+		</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Connector</servlet-name>
+    <url-pattern> /fckeditor/editor/filemanager/connectors/* 
+		</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>dwr-invoker</servlet-name>
+    <servlet-class>
+			org.directwebremoting.servlet.DwrServlet
+		</servlet-class>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dwr-invoker</servlet-name>
+    <url-pattern>/dwr/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CategoryAction</servlet-name>
+    <servlet-class>cn.heapstack.servlet.CategoryAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CategoryAction</servlet-name>
+    <url-pattern>/createCategory</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CategoryAction</servlet-name>
+    <url-pattern>/listCategory</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Register</servlet-name>
+    <servlet-class>cn.heapstack.servlet.RegisterAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Register</servlet-name>
+    <url-pattern>/Register</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Logon</servlet-name>
+    <servlet-class>cn.heapstack.servlet.LoginAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Logon</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>cn.heapstack.servlet.LogoutAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/Logout</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TagCloudAction</display-name>
+    <servlet-name>TagCloudAction</servlet-name>
+    <servlet-class>cn.heapstack.servlet.TagCloudAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TagCloudAction</servlet-name>
+    <url-pattern>/getTagCloud</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PostsAction</display-name>
+    <servlet-name>PostsAction</servlet-name>
+    <servlet-class>cn.heapstack.servlet.PostsAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostsAction</servlet-name>
+    <url-pattern>/Posts</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PostsAction</servlet-name>
+    <url-pattern>/Home</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <description></description>
+    <display-name>TagSuggestAction</display-name>
+    <servlet-name>TagSuggestAction</servlet-name>
+    <servlet-class>cn.heapstack.servlet.TagSuggestAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TagSuggestAction</servlet-name>
+    <url-pattern>/TagSuggestAction</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Context-param -->
+  <context-param>
+    <description>The paging parameter to indicate how many entries will be shown on one page</description>
+    <param-name>pageSize</param-name>
+    <param-value>3</param-value>
+  </context-param>
+  <context-param>
+    <description>The paging parameter to indicate run demo version of SimpleBlog without DB configuration</description>
+    <param-name>runDemo</param-name>
+    <param-value>false</param-value>
+  </context-param>
+  
+  <!-- Listener -->
+  <listener>
+    <listener-class>cn.heapstack.servlet.listener.SimpleBlogContextListener</listener-class>
+  </listener>
+
+  <!-- Filter -->
+  <filter>
+    <display-name>ViewPostsFilter</display-name>
+    <filter-name>ViewPostsFilter</filter-name>
+    <filter-class>cn.heapstack.filter.ViewPostsFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ViewPostsFilter</filter-name>
+    <servlet-name>PostsAction</servlet-name>
+  </filter-mapping>
+
+  <filter>
+    <display-name>EncodingFilter</display-name>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>cn.heapstack.filter.EncodingFilter</filter-class>
+    <init-param>
+      <description></description>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+</web-app>

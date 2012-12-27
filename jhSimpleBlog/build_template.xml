@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="FCKeditor">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../eclipse-jee-ganymede-win32/eclipse"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="Apache Tomcat v6.0 [Apache Tomcat v6.0].libraryclasspath">
+        <pathelement location="../../servers/apache-tomcat-6.0.14/lib/annotations-api.jar"/>
+        <pathelement location="../../servers/apache-tomcat-6.0.14/lib/catalina-ant.jar"/>
+        <pathelement location="../../servers/apache-tomcat-6.0.14/lib/catalina-ha.jar"/>
+        <pathelement location="../../servers/apache-tomcat-6.0.14/lib/catalina-tribes.jar"/>
+        <pathelement location="../../servers/apache-tomcat-6.0.14/lib/catalina.jar"/>
+        <pathelement location="../../servers/apache-tomcat-6.0.14/lib/el-api.jar"/>
+        <pathelement location="../../servers/apache-tomcat-6.0.14/lib/jasper-el.jar"/>
+        <pathelement location="../../servers/apache-tomcat-6.0.14/lib/jasper-jdt.jar"/>
+        <pathelement location="../../servers/apache-tomcat-6.0.14/lib/jasper.jar"/>
+        <pathelement location="../../servers/apache-tomcat-6.0.14/lib/jsp-api.jar"/>
+        <pathelement location="../../servers/apache-tomcat-6.0.14/lib/servlet-api.jar"/>
+        <pathelement location="../../servers/apache-tomcat-6.0.14/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../servers/apache-tomcat-6.0.14/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../servers/apache-tomcat-6.0.14/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../servers/apache-tomcat-6.0.14/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../servers/apache-tomcat-6.0.14/lib/tomcat-i18n-ja.jar"/>
+    </path>
+    <path id="Web App Libraries.libraryclasspath"/>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="FCKeditor.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Apache Tomcat v6.0 [Apache Tomcat v6.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src" excludes="**/*.launch, **/*.java"/>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="build/classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="FCKeditor.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+</project>
