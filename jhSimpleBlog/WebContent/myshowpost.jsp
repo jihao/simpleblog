@@ -106,11 +106,11 @@
 		
 		<div class="articlePostDesc">
 			posted on <f:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${article.postDate}"/> by ${article.author.nickName}
-			|&nbsp;阅读(1145)&nbsp;
+			|&nbsp;Read(1145)&nbsp;
 			|&nbsp;<a href="#comments">评论</a>(<label id="numberOfComments">${fn:length(article.commentsList)}</label>)&nbsp;
-			|&nbsp;<a href="Posts?method=edit&articleID=${article.articleID}">编辑</a>&nbsp;
-			|&nbsp;收藏&nbsp;
-			|&nbsp;所属分类:&nbsp;
+			|&nbsp;<a href="Posts?method=edit&articleID=${article.articleID}">Edit</a>&nbsp;
+			|&nbsp;Star&nbsp;
+			|&nbsp;Category:&nbsp;
 				<c:forEach var="category" items="${article.categoryList}">
 				<a href="Posts?method=search&categoryName=${category.categoryName}">${category.categoryName}</a>&nbsp;
 				</c:forEach>
@@ -121,12 +121,12 @@
 	</div>
 
 	<div class="blog_comment">
-		<h5 id="comments">评论</h5>
+		<h5 id="comments">Comments</h5>
 	</div>
 
 	<div>
 		<div id="commentsDiv">
-			<!-- 插入AJAX提交的Comments -->
+			<!-- AJAX Comments -->
 			<c:forEach var="comments" items="${article.commentsList}">
 				<div class="post">
     		        <a title="${comments.title}" href="#${comments.commentsID}">#</a>
@@ -141,7 +141,7 @@
 		</div>
 
 		<div class="blog_comment">
-			<h5 id="commentInput">发表评论</h5>
+			<h5 id="commentInput">Post Your Comment</h5>
 			<p>留言请注意遵守<a href="" target="_blank">本站发贴规则</a></p>
 			<input type="hidden" id="theCommentsArticleID" value="${article.articleID}"/>			
 			<p>
@@ -155,27 +155,27 @@
 					</thead>
 					<tbody>
 					<tr>
-						<td><label for="title" >标题</label></td>
+						<td><label for="title" >Title</label></td>
 						<td><input type="text" id="title" class="required" style="width:320" value="re:${article.title}"></td>
 					</tr>
 					<tr>
-						<td><label for="userName">姓名</label></td>
+						<td><label for="userName">Name</label></td>
 						<td><input type="text" id="userName" class="required" style="width:320"></td>
 					</tr>
 					<tr>
-						<td><label for="homePageURL">主页</label></td>
+						<td><label for="homePageURL">URL</label></td>
 						<td><input type="text" id="homePageURL" class="required url" style="width:320"></td>
 					</tr>	
 					<tr>
-						<td><label for="userEmail">邮件</label></td>
+						<td><label for="userEmail">Email</label></td>
 						<td><input type="text" id="userEmail" class="required email" style="width:320"></td>
 					</tr>	
 					<tr>
-						<td><label for="content">内容</label></td>
+						<td><label for="content">Content</label></td>
 						<td><textarea id = "content" rows="4" cols="30" class="required" style="width:320"></textarea></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="button" onclick="addComments();" value="提交"> </td>
+						<td colspan="2"><input type="button" onclick="addComments();" value="Submit"> </td>
 					</tr>				
 					</tbody>
 				</table>

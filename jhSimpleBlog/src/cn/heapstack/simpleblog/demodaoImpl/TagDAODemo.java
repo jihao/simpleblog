@@ -20,26 +20,22 @@ public class TagDAODemo implements ITagDAO {
 	static
 	{
 		Tag java = new Tag("Java");
-		java.setTagID(10);
-		TagMap.put(String.valueOf(10), java);
+		TagMap.put("Java", java);
 		
 		for(int i=0;i<10;i++)
 		{
 			Tag c = new Tag("Tag"+i);
-			c.setTagID(i);
 			c.setRelatedPosts(i);
-			TagMap.put(String.valueOf(i), c);
+			TagMap.put("Tag"+i, c);
 		}
 	}
 	
 
 	public boolean addTag(Tag c)
 	{
-		//Normally this should be create Tag to DB, use the ID as hashMap key
-		c.setTagID(getNextTagID());
 		c.setRelatedPosts( c.getRelatedPosts() + 1 );
 		
-		TagMap.put(String.valueOf(c.getTagID()), c);
+		TagMap.put(String.valueOf(c.getTagName()), c);
 		return true;
 	}
 	
@@ -53,7 +49,7 @@ public class TagDAODemo implements ITagDAO {
 
 	public boolean updateTag(Tag c)
 	{
-		TagMap.put(String.valueOf(c.getTagID()), c);
+		TagMap.put(String.valueOf(c.getTagName()), c);
 		return true;
 	}
 	
@@ -92,39 +88,7 @@ public class TagDAODemo implements ITagDAO {
 		return false;
 	}
 	
-	@Override
-	public boolean checkExist(String tagID) {
-		return getTag(tagID) != null;
-	}
-
 	
-	private int getNextTagID()
-	{
-		Iterator<String> keys = TagMap.keySet().iterator();
-		int max = 0;
-		while(keys.hasNext())
-		{
-			int id = Integer.parseInt( keys.next());
-			if( id > max)
-				max = id;
-		}
-		logger.info("Next Tag ID:"+max);
-		return ++max;
-	}
-
-	@Override
-	public int getTagID(String tagName) {
-		Iterator<String> keys = TagMap.keySet().iterator();
-		logger.info("isTagExist("+tagName + ") ,Size:" + TagMap.keySet().size());
-		while(keys.hasNext())
-		{
-			Tag c = TagMap.get(keys.next());
-			
-			if(c.getTagName().equals(tagName))
-				return c.getTagID();
-		}
-		return -1;
-	}
 	@Override
 	public List<Tag> queryAll() {
 		Collection<Tag> tmp = TagMap.values();

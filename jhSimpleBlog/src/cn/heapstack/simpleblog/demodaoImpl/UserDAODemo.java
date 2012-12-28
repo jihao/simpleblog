@@ -43,7 +43,7 @@ public class UserDAODemo implements IUserDAO{
 	@Override
 	public boolean checkExist(String userId) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override

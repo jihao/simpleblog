@@ -18,24 +18,24 @@ public class ArticleDAODemo implements IArticleDAO {
 	private static int id = 0;
 	Logger logger = LoggerFactory.getLogger(ArticleDAODemo.class);
 	
-	@Override
+	
 	public boolean addArticle(Article article) {
-		article.setArticleID(++id);
+		article.setArticleID(String.valueOf(++id));
 		ArticleDAODemo.articleMap.put(String.valueOf(article.getArticleID()), article);
 		return true;
 	}
 
-	@Override
+	
 	public boolean checkExist(int articleID) {
 		return (ArticleDAODemo.articleMap.get(String.valueOf(articleID))!=null);
 	}
 
-	@Override
+	
 	public boolean deleteArticle(int articleID) {
 		return (ArticleDAODemo.articleMap.remove(String.valueOf(articleID))!=null);
 	}
 
-	@Override
+	
 	public Article getArticle(int articleID) {
 		for (String entryID : ArticleDAODemo.articleMap.keySet()) {
 			if(entryID.equals(String.valueOf(articleID)))
@@ -45,7 +45,7 @@ public class ArticleDAODemo implements IArticleDAO {
 		return null;
 	}
 
-	@Override
+	
 	public List<Article> queryAll() {
 		List<Article> entryList = new ArrayList<Article>();
 		for (String entryID : ArticleDAODemo.articleMap.keySet()) {
@@ -56,7 +56,7 @@ public class ArticleDAODemo implements IArticleDAO {
 		return entryList;
 	}
 
-	@Override
+	
 	public List<Article> queryByName(String title) {
 		
 		List<Article> entryList = new ArrayList<Article>();
@@ -70,18 +70,18 @@ public class ArticleDAODemo implements IArticleDAO {
 		return entryList;
 	}
 
-	@Override
+	
 	public boolean updateArticle(Article article) {
 		ArticleDAODemo.articleMap.put(String.valueOf(article.getArticleID()), article);;
 		return true;
 	}
 
-	@Override
+	
 	public int getArticleTotalCount() {
 		return ArticleDAODemo.id;
 	}
 
-	@Override
+	
 	public List<Article> queryByPage(int pageNumber, int pageSize) {
 		
 		List<Article> ret = new ArrayList<Article>();
@@ -102,14 +102,42 @@ public class ArticleDAODemo implements IArticleDAO {
 		return ret;
 	}
 
-	@Override
+	
 	public void fillArticleBeanInfo(Article a) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public User getAuthorByArticleID(int articleID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean isArticleExist(String articleID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public Article getArticle(String articleID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean deleteArticle(String articleID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public User getAuthorByArticleID(String articleID) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -15,7 +15,7 @@ public class ArticleTagDAODemo implements IArticleTagDAO {
 	public static ArrayList<ArticleTagRecord> record = new ArrayList<ArticleTagRecord>(); 
 	@Override
 	public boolean addRecord(String articleID, String tagID) {
-		return record.add(new ArticleTagRecord(articleID,tagID));
+		return record.add(new ArticleTagRecord(Integer.valueOf(articleID),Integer.valueOf(tagID)));
 	}
 	
 	@Override
@@ -23,8 +23,8 @@ public class ArticleTagDAODemo implements IArticleTagDAO {
 		boolean result = false;
 		ArticleTagRecord toBeRemoved = null;
 		for (ArticleTagRecord articleTagRecord : record) {
-			if (articleTagRecord.getArticleID()==articleID
-					&& articleTagRecord.getTagID()==tagID)
+			if (articleTagRecord.getArticleID()==Integer.valueOf(articleID)
+					&& articleTagRecord.getTagID()==Integer.valueOf(tagID))
 			{
 				toBeRemoved = articleTagRecord;
 				result = true;
@@ -40,7 +40,7 @@ public class ArticleTagDAODemo implements IArticleTagDAO {
 		boolean result = false;
 		ArticleTagRecord toBeRemoved = null;
 		for (ArticleTagRecord articleTagRecord : record) {
-			if (articleTagRecord.getArticleID()==articleID)
+			if (articleTagRecord.getArticleID()==Integer.valueOf(articleID))
 			{
 				toBeRemoved = articleTagRecord;
 				result = true;
@@ -56,7 +56,7 @@ public class ArticleTagDAODemo implements IArticleTagDAO {
 		boolean result = false;
 		ArticleTagRecord toBeRemoved = null;
 		for (ArticleTagRecord articleTagRecord : record) {
-			if (articleTagRecord.getTagID()==tagID)
+			if (articleTagRecord.getTagID()==Integer.valueOf(tagID))
 			{
 				toBeRemoved = articleTagRecord;
 				result = true;
@@ -95,11 +95,11 @@ public class ArticleTagDAODemo implements IArticleTagDAO {
 	public List<Article> searchArticlesByTagName(String tagID) {
 		List<Article> searchResult = new ArrayList<Article>();
 		for (ArticleTagRecord articleTagRecord : record) {
-			if (articleTagRecord.getTagID() == tagID)
+			if (articleTagRecord.getTagID() == Integer.valueOf(tagID))
 			{
 				int articleID = articleTagRecord.getArticleID();
 				IArticleDAO articleDAO = DAOFactory.getDAOFactory().getArticleDAO();
-				Article a = articleDAO.getArticle(articleID);
+				Article a = articleDAO.getArticle(String.valueOf(articleID));
 				searchResult.add(a);
 			}
 		} 
@@ -108,12 +108,12 @@ public class ArticleTagDAODemo implements IArticleTagDAO {
 		return searchResult;
 	}
 	@Override
-	public List<Integer> getTagNamesRelatedWithArticleID(String articleID) {
-		ArrayList<Integer> tagIDs = new ArrayList<Integer>();
+	public List<String> getTagNamesRelatedWithArticleID(String articleID) {
+		ArrayList<String> tagIDs = new ArrayList<String>();
 		for (ArticleTagRecord articleTagRecord : record) {
-			if (articleTagRecord.getArticleID()==articleID)
+			if (articleTagRecord.getArticleID()==Integer.valueOf(articleID))
 			{
-				tagIDs.add(articleTagRecord.tagID);
+				tagIDs.add(String.valueOf(articleTagRecord.tagID));
 			}
 		}
 		return tagIDs;
@@ -123,6 +123,12 @@ public class ArticleTagDAODemo implements IArticleTagDAO {
 	public List<Tag> getTagListByArticleID(String articleID) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int getArticleCountsRelatedWithTagName(String tagName) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

@@ -27,11 +27,11 @@
 			
 			<div class="articlePostDesc">
 				posted on <f:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${article.postDate}"/> by ${article.author.nickName}
-				|&nbsp;阅读(1145)&nbsp;
-				|&nbsp;<a href="?method=view&articleID=${article.articleID}#comments">评论</a>(<label id="numberOfComments">${fn:length(article.commentsList)}</label>)&nbsp;
-				|&nbsp;<a href="Posts?method=edit&articleID=${article.articleID}">编辑</a>&nbsp;
-				|&nbsp;收藏&nbsp;
-				|&nbsp;所属分类:&nbsp;
+				|&nbsp;Star(1145)&nbsp;
+				|&nbsp;<a href="?method=view&articleID=${article.articleID}#comments">Comments</a>(<label id="numberOfComments">${fn:length(article.commentsList)}</label>)&nbsp;
+				|&nbsp;<a href="Posts?method=edit&articleID=${article.articleID}">Edit</a>&nbsp;
+				|&nbsp;Star&nbsp;
+				|&nbsp;Category:&nbsp;
 					<c:forEach var="category" items="${article.categoryList}">
 					<a href="Posts?method=search&categoryName=${category.categoryName}">${category.categoryName}</a>&nbsp;
 					</c:forEach>

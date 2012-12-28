@@ -15,7 +15,7 @@ public class CommentsDAODemo implements ICommentsDAO {
 	public boolean addComments(Comments comments) {
 		int nextID = ++commentsIDSeed;
 		commentsMap.put(String.valueOf(nextID), comments);
-		comments.setCommentsID(nextID);
+		comments.setCommentsID(String.valueOf(nextID));
 		return true;
 	}
 

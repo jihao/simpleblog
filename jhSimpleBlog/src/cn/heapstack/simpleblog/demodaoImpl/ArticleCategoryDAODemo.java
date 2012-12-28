@@ -17,16 +17,16 @@ public class ArticleCategoryDAODemo implements IArticleCategoryDAO {
 
 	public static ArrayList<ArticleCategoryRecord> record = new ArrayList<ArticleCategoryRecord>(); 
 	Logger logger = LoggerFactory.getLogger(ArticleCategoryDAODemo.class);
-	@Override
+	
 	public boolean addRecord(String articleID, String categoryID) {
-		return record.add(new ArticleCategoryRecord(articleID,categoryID));
+		return record.add(new ArticleCategoryRecord(Integer.valueOf(articleID),Integer.valueOf(categoryID)));
 	}
-	@Override
+	
 	public boolean removeRecordByArticleID(String articleID) {
 		boolean result = false;
 		ArticleCategoryRecord toBeRemoved = null;
 		for (ArticleCategoryRecord articleCategoryRecord : record) {
-			if (articleCategoryRecord.getArticleID()==articleID)
+			if (articleCategoryRecord.getArticleID()==Integer.valueOf(articleID))
 			{
 				toBeRemoved = articleCategoryRecord;
 				result = true;
@@ -37,12 +37,12 @@ public class ArticleCategoryDAODemo implements IArticleCategoryDAO {
 		return result;
 	}
 
-	@Override
+	
 	public boolean removeRecordByCategoryName(String categoryID) {
 		boolean result = false;
 		ArticleCategoryRecord toBeRemoved = null;
 		for (ArticleCategoryRecord articleCategoryRecord : record) {
-			if (articleCategoryRecord.getCategoryID()==categoryID)
+			if (articleCategoryRecord.getCategoryID()==Integer.valueOf(categoryID))
 			{
 				toBeRemoved = articleCategoryRecord;
 				result = true;
@@ -52,15 +52,15 @@ public class ArticleCategoryDAODemo implements IArticleCategoryDAO {
 		record.remove(toBeRemoved);
 		return result;
 	}
-	@Override
+	
 	public List<Article> searchArticlesByCategoryID(String categoryID) {
 		List<Article> searchResult = new ArrayList<Article>();
 		for (ArticleCategoryRecord articleCategoryRecord : record) {
-			if (articleCategoryRecord.getCategoryID()==categoryID)
+			if (articleCategoryRecord.getCategoryID()==Integer.valueOf(categoryID))
 			{
 				int articleID = articleCategoryRecord.getArticleID();
 				IArticleDAO articleDAO = DAOFactory.getDAOFactory().getArticleDAO();
-				Article a = articleDAO.getArticle(articleID);
+				Article a = articleDAO.getArticle(String.valueOf(articleID));
 				searchResult.add(a);
 			}
 		} 
@@ -94,8 +94,20 @@ public class ArticleCategoryDAODemo implements IArticleCategoryDAO {
 		}
 	}
 
-	@Override
+	
 	public List<Category> getCategoryListByArticleID(String articleID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getArticleCountsRelatedWithCategoryName(String categoryName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<Article> searchArticlesByCategoryName(String categoryName) {
 		// TODO Auto-generated method stub
 		return null;
 	}

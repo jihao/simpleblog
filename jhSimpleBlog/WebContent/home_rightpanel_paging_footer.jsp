@@ -11,11 +11,11 @@ function gotoSelectedPage()
 </script>
 <form action="Posts" method="get" id="navigatorForm">
 	<input name="method" type="hidden" value="homelist">
-	<a href="Posts?method=homelist&pageNumber=1">首页</a> 
+	<a href="Posts?method=homelist&pageNumber=1">First</a> 
 	<c:if test="${pageNumber>1}">
-		<a href="Posts?method=homelist&pageNumber=${pageNumber-1}">上一页</a>
+		<a href="Posts?method=homelist&pageNumber=${pageNumber-1}">Prev</a>
 	</c:if> 
-	跳转到第 <select name="pageNumber" onchange="gotoSelectedPage();">
+	Go To Page <select name="pageNumber" onchange="gotoSelectedPage();">
 	<c:forEach begin="1" end="${totalPages}" step="1" var="pageIndex">
 		<c:choose>
 			<c:when test="${pageIndex eq pageNumber}">
@@ -26,10 +26,10 @@ function gotoSelectedPage()
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
-	</select>页 
+	</select>
 	<c:if test="${pageNumber<totalPages}">
-		<a href="Posts?method=homelist&pageNumber=${pageNumber+1}">下一页</a>
+		<a href="Posts?method=homelist&pageNumber=${pageNumber+1}">Next</a>
 	</c:if> 
-	<a href="Posts?method=homelist&pageNumber=${totalPages}">末页</a>
+	<a href="Posts?method=homelist&pageNumber=${totalPages}">Last</a>
 </form>
 

@@ -54,7 +54,7 @@ function logout()
 				<li>Struts1</li>
 				<li>Struts2</li>
 				<li>Swing Tips</li>
-				<li>数独程序</li>
+				<li>Sudoku</li>
 			</ul>
 		</div>
 		

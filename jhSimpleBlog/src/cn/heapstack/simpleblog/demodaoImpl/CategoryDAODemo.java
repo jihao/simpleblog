@@ -19,24 +19,20 @@ public class CategoryDAODemo implements ICategoryDAO {
 	static
 	{
 		Category java = new Category("Java","Comments for Java");
-		java.setCategoryID(10);
-		categoryMap.put(String.valueOf(10), java);
+		
+		categoryMap.put("Java", java);
 		
 		for(int i=0;i<10;i++)
 		{
 			Category c = new Category("Category"+i,"Comments for this category");
-			c.setCategoryID(i);
-			categoryMap.put(String.valueOf(i), c);
+			categoryMap.put("Category"+i, c);
 		}
 	}
 	
 
 	public boolean addCategory(Category c)
 	{
-		//Normally this should be create category to DB, use the ID as hashMap key
-		c.setCategoryID(getNextCategoryID());
-		
-		categoryMap.put(String.valueOf(c.getCategoryID()), c);
+		categoryMap.put(String.valueOf(c.getCategoryName()), c);
 		
 		return true;
 	}
@@ -52,7 +48,7 @@ public class CategoryDAODemo implements ICategoryDAO {
 
 	public boolean updateCategory(Category c)
 	{
-		categoryMap.put(String.valueOf(c.getCategoryID()), c);
+		categoryMap.put(String.valueOf(c.getCategoryName()), c);
 		
 		return true;
 	}
@@ -79,33 +75,7 @@ public class CategoryDAODemo implements ICategoryDAO {
 		return false;
 	}
 	
-	private int getNextCategoryID()
-	{
-		Iterator<String> keys = categoryMap.keySet().iterator();
-		int max = 0;
-		while(keys.hasNext())
-		{
-			int id = Integer.parseInt( keys.next());
-			if( id > max)
-				max = id;
-		}
-		logger.info("Next Category ID:"+max);
-		return ++max;
-	}
-
-	@Override
-	public int getCategoryID(String categoryName) {
-		Iterator<String> keys = categoryMap.keySet().iterator();
-		logger.info("isCategoryExist("+categoryName + ") ,Size:" + categoryMap.keySet().size());
-		while(keys.hasNext())
-		{
-			Category c = categoryMap.get(keys.next());
-			
-			if(c.getCategoryName().equals(categoryName))
-				return c.getCategoryID();
-		}
-		return -1;
-	}
+	
 	
 	@Override
 	public List<Category> queryAll() {
